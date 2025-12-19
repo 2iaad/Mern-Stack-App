@@ -6,9 +6,19 @@ by Socket.IO.
 
 ---
 
+## Project structure
+
+```
+    /src
+    ├─ models/          <-- your Mongoose models (Models that manipulate the databases)
+    ├─ controllers/     <-- route logic (Code that handles requests sent to an EndPoint)
+    ├─ routes/          <-- API routes (EndPoints)
+    └─ lib/             <-- reusable utilities (like connectDB)
+```
+
 ### Definitions
-    **Route**: is the code you write on the server that defines what happens when you visite the endpoint.
     **Endpoint**: is a specific HTTP method + URL path that the client requests.
+    **Route**: is the code you write on the server that defines what happens when you visite the endpoint.
 
 ### in terms of directories:
     **routes** → decides which function runs for a given HTTP method and URL
