@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken"
 import User from "../models/user.model.ts"
-import type { Response, Request } from "express"
+import type { RequestHandler } from "express" // type that suits a middleware function
 
-export const protectRoute = async (res: Response, req: Request, next) => {
+export const protectRoute : RequestHandler = async (req, res, next) => {
 
     try {
         // Get jwt from req header

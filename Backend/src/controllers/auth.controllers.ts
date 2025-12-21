@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import User from '../models/user.model.ts'
 import bcrypt from "bcryptjs"
+import type { RequestHandler } from "express";
 
 import { generateJWT } from "../lib/utils.ts";
 
@@ -33,11 +34,11 @@ export async function signup(req: Request, res: Response) {
             password: hashedPassword
         })
 
-        // generate JWT token
-        const jwToken = generateJWT(newUser._id, res);
-
         // save newUser inside the DB with its jwToken
         await newUser.save()
+
+        // generate JWT token
+        const jwToken = generateJWT(newUser._id, res);
 
         res.status(201).json({
             message: "New user created!",
@@ -89,6 +90,6 @@ export const logout = (req: Request, res: Response) => {
     }
 }
 
-export const editProfile = (req: Request, res: Response) => {
+export const editProfile : RequestHandler = (req, res) => {
 
 }
