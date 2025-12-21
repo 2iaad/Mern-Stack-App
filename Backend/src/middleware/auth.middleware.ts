@@ -16,8 +16,8 @@ export const protectRoute = async (res: Response, req: Request, next) => {
             return res.status(401).json({ message: "Unauthorized: Invalid token!" });
         
         const user = await User.findById(decodedJwt.userId).select("-password");
-        
-        (req as any).user = user;
+
+        (req as any).user = user; // fill request with user 
 
         // Calling the function to make the profile uprdates..
         next();
