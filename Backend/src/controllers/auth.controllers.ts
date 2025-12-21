@@ -1,9 +1,11 @@
 import type { Request, Response } from "express";
 import User from '../models/user.model.ts'
-import bcrypt from "bcryptjs"
+import bcrypt from "bcryptjs" // importing element from package downloaded
 import type { RequestHandler } from "express";
 
 import { generateJWT } from "../lib/utils.ts";
+import cloudinary from "../lib/cloudinary.ts";
+import { ObjectId } from "mongoose";
 
 export async function signup(req: Request, res: Response) {
     const { fullName, email, password } = req.body; // This line creates three separate variables, each one takes its value Ex: email = req.body.email
@@ -90,6 +92,25 @@ export const logout = (req: Request, res: Response) => {
     }
 }
 
-export const editProfile : RequestHandler = (req, res) => {
+// whats the difference between api key and api secret ?
+export const editProfile: RequestHandler = async (req, res) => {
+    try {
+        const userId: ObjectId = (req as any).user._id;
+        const { profilePicture } = req.body;
+        if (!profilePicture)
+            return res.status(400).json({ message: "There is no picture to update!" })
 
+        const uploadResponse = await cloudinary.uploader.upload(profilePicture);
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { profilePic: uploadResponse.secure_url },
+            { new: true }
+        )
+
+        res.status(200).json(updatedUser)
+    }
+    catch (error) {
+        console.log("Error in editProfile controller (auth.controllers.ts: 133)");
+        return res.status(500).json({message: "Internal server error"})
+    }
 }

@@ -1,13 +1,12 @@
 import express from "express"
-import dotenv from "dotenv"
+import { config } from "dotenv"
 
 import authRoutes from "./routes/auth.route.ts"
 import { connectDB } from "./lib/db.ts"
 
-
-dotenv.config() // this need to be called inorder to use "process.env.PORT"
+// Reads your .env file + Loads values into process.env
+config();
 const PORT = process.env.PORT
-
 
 const app = express();
 /**

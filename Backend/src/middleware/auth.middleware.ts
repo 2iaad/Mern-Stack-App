@@ -1,7 +1,8 @@
 import jwt from "jsonwebtoken"
 import User from "../models/user.model.ts"
-import type { RequestHandler } from "express" // type that suits a middleware function
+import type { RequestHandler } from "express" // type of a middleware function
 
+// functions that checks if the request coming from the browser belongs to a valide user -> via the JWToken
 export const protectRoute : RequestHandler = async (req, res, next) => {
 
     try {
