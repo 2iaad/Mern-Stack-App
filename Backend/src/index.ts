@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import { config } from "dotenv"
 
 import authRoutes from "./routes/auth.route.ts"
+import messageRoutes from "./routes/message.route.ts"
 import { connectDB } from "./lib/db.ts"
 
 // Reads your .env file + Loads values into process.env
@@ -21,6 +22,7 @@ app.use(express.json()) // apply middleware to every request before reaching rou
 app.use(cookieParser()); // apply middleware to every request to parse the Cookie header into (key, value)
 
 app.use("/api/auth", authRoutes)
+app.use("/api/message", messageRoutes)
 
 /*
     Route: is the code you write on the server that defines what happens when you visite the endpoint.
