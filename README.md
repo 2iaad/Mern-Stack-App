@@ -80,3 +80,11 @@ by Socket.IO.
 | Cookies      | Manual (`Set-Cookie` header) | `res.cookie()` helper       |
 | Middleware   | Manual functions             | `app.use()`                 |
 ```
+
+## Login and signup Pages(front-end)
+
+we managed to install this third-party package called **react-router-dom**
+
+`react-router-dom`:
+    -> just links a React component with an URL path, so that we can make a frontend router.
+    -> simulate multi-page behavior inside a single-page application.
