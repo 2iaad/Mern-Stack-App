@@ -108,4 +108,22 @@ routing components imported from the `react-router-dom` package.
         1. automatique error handling of the http request (res.ok()).
         2. automatique JSON parsing
 
+#### `zustand`
+    -> Zustand library allows us to create our custum global state variables (state + update logic) that are shared across multiple components without prop drilling.
+    -> So state lives outside the component tree, Components access it directly.
+> Pass state variables to components bla ktrt lhadra
 
+#### `daysiUI`
+
+    -> Tailwind CSS plugin that adds pre-built UI components and themes.
+> A plugin is a piece of code that depends on another library or tool + it cannot work alone; it depends on a library or framework + Adds extra features to an existing system.
+
+
+
+
+
+
+### Error i encountered: (Coss-origin)
+
+This error happens because your Frontend (running on port 5173) and your Backend (running on port 5001) are on different "origins" (domains/ports). Browsers block these requests by default for security unless the backend explicitly allows them.
+Fix: used the `cors` package in the back-end.

@@ -1,3 +1,5 @@
+import { Routes, Route } from "react-router-dom"
+
 import Navbar from "./components/Navbar"
 import HomePage from "./components/HomePage"
 import SignUpPage from "./components/SignUpPage"
@@ -5,7 +7,9 @@ import LoginPage from "./components/LoginPage"
 import SettingsPage from "./components/SettingsPage"
 import ProfilePage from "./components/ProfilePage"
 
-import { Routes, Route } from "react-router-dom"
+import { useAuthStore } from "./store/useAuthStore"
+import { useEffect } from "react"
+
 
 /**
  * @summary
@@ -16,6 +20,15 @@ import { Routes, Route } from "react-router-dom"
  */
 
 export default function App() {
+
+	const { authUser, checkAuth } = useAuthStore();
+
+	useEffect(() => {
+		checkAuth();
+	}, [checkAuth])
+
+	console.log(authUser)
+
 
 	return (
 		<div>

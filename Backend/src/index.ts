@@ -1,6 +1,7 @@
 import express from "express"
 import cookieParser from "cookie-parser";
 import { config } from "dotenv"
+import cors from "cors"
 
 import authRoutes from "./routes/auth.route.ts"
 import messageRoutes from "./routes/message.route.ts"
@@ -18,6 +19,13 @@ const app = express();
  ->  express.json() parses incoming request bodies that are in JSON format.
  ->  It makes the data available on req.body inside your routes.
  */
+
+// Cross-origin resource sharing problem fixed.
+app.use(cors({
+    origin: "http://localhost:5173", // Allow ONLY your frontend URL
+    credentials: true // Allow cookies to be sent
+}));
+
 app.use(express.json()) // apply middleware to every request before reaching routes
 app.use(cookieParser()); // apply middleware to every request to parse the Cookie header into (key, value)
 
