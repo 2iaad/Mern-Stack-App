@@ -83,8 +83,29 @@ by Socket.IO.
 
 ## Login and signup Pages(front-end)
 
-we managed to install this third-party package called **react-router-dom**
+### Packages Needed
 
-`react-router-dom`:
+#### `react-router-dom`:
     -> just links a React component with an URL path, so that we can make a frontend router.
     -> simulate multi-page behavior inside a single-page application.
+
+```
+import { BrowserRouter } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
+```
+routing components imported from the `react-router-dom` package.
+
+**BrowserRouter (component)**: Links the browser's URL to React, Listens to URL changes (/login, /profile, etc.)
+**Routes (component)**: A route matcher, it decides which route to display
+**Route (component)**: A single route definition (maps URL to component)
+
+> Route must always be a child of `<Routes>`.
+
+#### `axios`
+    -> JavaScript library (so it works on both back & front) used to make HTTP requests from your application to a server or API.
+    -> In my case i will be using it to make front-end call my backend API.
+    -> axios is preferable than fetch for the following reasons:
+        1. automatique error handling of the http request (res.ok()).
+        2. automatique JSON parsing
+
+
