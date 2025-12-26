@@ -9,14 +9,7 @@ import ProfilePage from "./components/ProfilePage"
 
 import { useAuthStore } from "./store/useAuthStore"
 import { useEffect } from "react"
-
-/**
- * @summary
- * Seting up client-side routing using React Router, where:
- *		-> BrowserRouter enables URL tracking.
- *		-> Routes matches paths.
- *		-> Each Route maps a URL to a React component.
- */
+import { Toaster } from "react-hot-toast"
 
 export default function App() {
 
@@ -51,6 +44,7 @@ export default function App() {
 				{/* If logged in, go to profile. If not go to login */}
 				<Route path="/profile" element={authUserObj ? <ProfilePage /> : <Navigate to="/login" />} />
 			</Routes>
+			<Toaster />
 		</div>
 	)
 }
