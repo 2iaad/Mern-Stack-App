@@ -29,4 +29,9 @@ Packages needed: `axios` + `cros` + `zustand`.
     else a throw is catched and we know that there is no user.
 
 
-### 
+### Protect routes based on the authentification status.
+
+We are doing so using the response we got earlier pinging /check from back-end.
+We are using conditional rendering.
+    -> for example:
+        if the the request containes this endpoint "http://localhost:5173/" but the user isn't yet logged in, we redirect him to the "http://localhost:5173/login" page.

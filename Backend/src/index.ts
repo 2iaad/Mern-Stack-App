@@ -23,7 +23,7 @@ const app = express();
 // Cross-origin resource sharing problem fixed.
 app.use(cors({
     origin: "http://localhost:5173", // Allow ONLY your frontend URL
-    credentials: true // Allow cookies to be sent
+    credentials: true // Allow cookies to be sent with the request
 }));
 
 app.use(express.json()) // apply middleware to every request before reaching routes
@@ -34,6 +34,6 @@ app.use("/api/auth", authRoutes)
 app.use("/api/message", messageRoutes)
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port: ${PORT}`)
+    console.log('\n' + `Server is running on port: ${PORT}`)
     connectDB()
 })
