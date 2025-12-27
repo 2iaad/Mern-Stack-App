@@ -9,14 +9,21 @@ interface AuthStore {
     isUpdatingProfile: boolean;
     isCheckingAuth: boolean;
     checkAuth: () => Promise<void>; // ? 
-    signup: (data: signupDataType) => Promise<void>; // ? 
+    signup: (data: userDataType) => Promise<void>; // ? 
+    login: (data: userDataType) => Promise<void>; // ? 
+    logout: (data: userDataType) => Promise<void>; // ? 
 }
 
-type signupDataType = {
-    fullName: String,
+type userDataType = {
+    fullName?: String,
     email: String,
     password: String
 }
+
+// type loginuserDataType = {
+//     email: String,
+//     password: String
+// }
 
 {/*
     -> export const useAuthStore = create<AuthStore>(...)
@@ -54,13 +61,13 @@ export const useAuthStore = create<AuthStore>((set) => ({
         }
     },
 
-    signup: async (data: signupDataType) => {
+    signup: async (data: userDataType) => {
 
-        set({isSigningUp: true});
-        set({authUserObj: data})
+        set({ isSigningUp: true });
 
         try {
             const res = await axiosInstance.post("/auth/signup", data)
+            set({ authUserObj: res.data })
 
             console.log("success")
             toast.success("Account created successfully")
@@ -68,7 +75,36 @@ export const useAuthStore = create<AuthStore>((set) => ({
             console.log("error")
             toast.error((error as any).Response?.data?.message);
         } finally {
-            set({isSigningUp: false});
+            set({ isSigningUp: false });
         }
+    },
+
+    login: async (data: userDataType) => {
+
+        set({ isLoggingIn: true })
+
+        try {
+
+            const res = await axiosInstance.post("/auth/login", data);
+            set({ authUserObj: res.data })
+
+            toast.success("Logged to account successfully")
+        } catch (error) {
+            toast.error("Failed to login")
+        } finally {
+            set({ isLoggingIn: false })
+        }
+    },
+    
+    logout: async (data: userDataType) => {
+
+        try {
+            axiosInstance.post("/auth/logout", data)
+            set({authUserObj: null})
+
+            toast.success("Logged out successfully")
+        } catch (error) {
+            toast.error("Can't logout user");
+        } 
     }
 }))

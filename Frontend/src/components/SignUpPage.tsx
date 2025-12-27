@@ -23,7 +23,7 @@ import { Loader2 } from "lucide-react"
 import { Link } from "react-router-dom"
 import toast from "react-hot-toast"
 
-export default function SignUpPage({ ...props }: React.ComponentProps<typeof Card>) {
+export default function SignUpPage() {
 
     const [formData, setFormData] = useState({
         fullName: "",
@@ -50,10 +50,10 @@ export default function SignUpPage({ ...props }: React.ComponentProps<typeof Car
     }
 
     return (
-        <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 bg-red-50">
+        <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10 bg-gray-800">
             <div className="w-full max-w-sm">
 
-                <Card {...props}>
+                <Card>
                     <CardHeader>
                         <CardTitle>Create an account</CardTitle>
                         <CardDescription>
@@ -99,8 +99,7 @@ export default function SignUpPage({ ...props }: React.ComponentProps<typeof Car
                                 <Button type="submit" disabled={isSigningUp}> {/* if (isSigningUp = true) The button cannot be clicked, this to prevent double submition */}
                                     {isSigningUp ? (
                                         <>
-                                            <Loader2 className="size-5 animate-spin" />
-                                            Loading...
+                                            <Loader2 className="size-5 animate-spin" />Loading...
                                         </>
                                     ) : (
                                         "Create Account"
