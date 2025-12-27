@@ -12,12 +12,14 @@ interface AuthStore {
     signup: (data: userDataType) => Promise<void>; // ? 
     login: (data: userDataType) => Promise<void>; // ? 
     logout: (data: userDataType) => Promise<void>; // ? 
+    updateProfile: (data: userDataType) => Promise<void>; // ? 
 }
 
 type userDataType = {
     fullName?: String,
     email: String,
-    password: String
+    password: String,
+    profilePic?: string | ArrayBuffer | null;
 }
 
 // type loginuserDataType = {
@@ -106,5 +108,19 @@ export const useAuthStore = create<AuthStore>((set) => ({
         } catch (error) {
             toast.error("Can't logout user");
         } 
+    },
+
+    updateProfile: async (payload: { fullName?: string; profilePicture?: string }) => {
+        set({isUpdatingProfile: true})
+        try {
+            const res = await axiosInstance.put("/auth/edit-profile");
+            set({authUserObj: res.data})
+            toast.success("Photo uploaded successfully!")
+        } catch (error) {
+            toast.error("Couldn't upload photo!")
+
+        } finally {
+            set({isCheckingAuth: false})
+        }
     }
 }))

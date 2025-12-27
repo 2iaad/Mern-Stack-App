@@ -26,8 +26,9 @@ app.use(cors({
     credentials: true // Allow cookies to be sent with the request
 }));
 
-app.use(express.json()) // apply middleware to every request before reaching routes
 app.use(cookieParser()); // apply middleware to every request to parse the Cookie header into (key, value)
+app.use(express.json({ limit: "10mb" })); // apply middleware to every request before reaching routes
+app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 // This means: forward any request that starts with /api/auth to authRoutes -> The router then decides what happens next
 app.use("/api/auth", authRoutes)
