@@ -68,3 +68,16 @@
 
     - send POST request to the backend via `/auth/logout` to remove the JWT from the cookies.
     - init the global state variable *authUserObject* with null to target a re-render of the page -> then go to `/login` page.
+
+7. ### Build Profile page (front-end) + link it with the backend.
+
+    Tools needed: `Cloudinary`
+    **Cloudinary**: Cloud service for storing images, it provides uploads API to make backend communicates with it.
+
+    in this section: i handled client-side image upload in a React + TypeScript application.
+
+    Prepared the profile page UI + with a custum label that contains `<input>` type of file, so we can click on it to chose the photo we want to use.
+    when the button is clicked:
+        -> i call the `handleImageUpload`
+        -> get file from **e** object
+        -> call the updateProfile() action that sends the PUT request to the "/auth/edit-profile" along with the picture *(to upload image to claudinary + update the DB)*.
