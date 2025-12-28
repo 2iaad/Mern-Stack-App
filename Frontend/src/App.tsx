@@ -43,6 +43,8 @@ export default function App() {
 				<Route path="/settings" element={<SettingsPage />} />
 				{/* If logged in, go to profile. If not go to login */}
 				<Route path="/profile" element={authUserObj ? <ProfilePage /> : <Navigate to="/login" />} />
+				{/* Catch-all: redirect unknown routes to home */}
+				<Route path="*" element={<Navigate to="/" replace />} />
 			</Routes>
 			<Toaster />
 		</div>

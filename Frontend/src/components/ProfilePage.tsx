@@ -13,12 +13,12 @@ export default function ProfilePage() {
         if (!file) return;
 
         const reader = new FileReader();
-        reader.readAsDataURL(file)
+        reader.readAsDataURL(file) // read file as string
 
         reader.onloadend = async () => {
             const base64data = reader.result;
             setSelectedImg(base64data); // update state to render new image
-            await updateProfile({profilePicture: base64data}) // update MongoDB
+            await updateProfile({profilePicture: base64data}) // send PUT to backend api
         }
     }
     console.log(authUserObj.profilePicture)
