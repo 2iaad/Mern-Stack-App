@@ -18,8 +18,6 @@ export default function App() {
 		checkAuth();
 	}, [checkAuth])
 
-	console.log(`Authentificated user: ${authUserObj}`)
-
 	if (isCheckingAuth && !authUserObj) // show spinner
 	{
 		return (
@@ -31,7 +29,7 @@ export default function App() {
 
 	return (
 		<div>
-			<Navbar />
+			{authUserObj && <Navbar />}
 			<Routes>
 				{/* If logged in, go to Home. If not, go to Login */}
 				<Route path="/" element={authUserObj ? <HomePage /> : <Navigate to="/login"/>} />

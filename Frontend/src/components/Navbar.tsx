@@ -10,9 +10,6 @@ export default function Navbar() {
         logout(authUserObj);
     }
 
-    // If user is not logged in, don’t show navbar
-    if (!authUserObj) return null
-
     return (
 
         <header className="fixed shadow-md inset-x-0 top-0 z-30 mx-auto max-w-130 bg-gray-100 py-3 backdrop-blur-lg md:top-6 md:rounded-4xl">

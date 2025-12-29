@@ -4,7 +4,7 @@ import { config } from "dotenv"
 import cors from "cors"
 
 import authRoutes from "./routes/auth.route.ts"
-import messageRoutes from "./routes/message.route.ts"
+import messagesRoutes from "./routes/messages.route.ts"
 import { connectDB } from "./lib/db.ts"
 
 // Reads your .env file + Loads values into process.env
@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
 // This means: forward any request that starts with /api/auth to authRoutes -> The router then decides what happens next
 app.use("/api/auth", authRoutes)
-app.use("/api/message", messageRoutes)
+app.use("/api/messages", messagesRoutes)
 
 app.listen(PORT, () => {
     console.log('\n' + `Server is running on port: ${PORT}`)
