@@ -4,7 +4,6 @@ import Navbar from "./components/Navbar"
 import HomePage from "./components/HomePage"
 import SignUpPage from "./components/SignUpPage"
 import LoginPage from "./components/LoginPage"
-import SettingsPage from "./components/SettingsPage"
 import ProfilePage from "./components/ProfilePage"
 
 import { useAuthStore } from "./store/useAuthStore"
@@ -39,8 +38,6 @@ export default function App() {
 				{/* If logged in, go to Home. If not, its ok */}
 				<Route path="/signup" element={authUserObj ? <Navigate to="/" /> : <SignUpPage />} />
 				<Route path="/login" element={authUserObj ? <Navigate to="/" /> : <LoginPage />} />
-				{/* Nothing */}
-				<Route path="/settings" element={<SettingsPage />} />
 				{/* If logged in, go to profile. If not go to login */}
 				<Route path="/profile" element={authUserObj ? <ProfilePage /> : <Navigate to="/login" />} />
 				{/* Catch-all: redirect unknown routes to home */}
