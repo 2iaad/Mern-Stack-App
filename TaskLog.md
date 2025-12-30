@@ -82,4 +82,11 @@
         -> get file from **e** object
         -> call the updateProfile() action that sends the PUT request to the "/auth/edit-profile" along with the picture *(to upload image to claudinary + update the DB)*.
 
-8. ### Build the home page (chat)
+8. ### Build the home page (Sidebar section)
+
+    - inside the `<Sidebar>` component, im calling the getUsers() that sends a GET request using axios to this endpoint from the back-end "/api/messages/users"
+    - the controller `getUsersForSideBar()`is called, i get the currect user, use the User model to fetch from the Mongo dataBase all the users except for me.
+    - i get the response and update the users state variable using the set() function.
+    - React re-renders Sidebar: Sidebar re-renders, now receiving the updated users array.
+
+9. ### Build the home page (ChatContainer section)

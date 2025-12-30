@@ -10,8 +10,6 @@ export default function Sidebar() {
   const { onlineUsers } = useAuthStore();
   const onlineIds = onlineUsers.map(u => u._id);
 
-  const usersList = Array.isArray(users) ? users : [];
-
   useEffect(() => {
     getUsers();
   }, [getUsers])
@@ -31,7 +29,7 @@ export default function Sidebar() {
 
       {/* Users section */}
       <div className="overflow-y-auto w-full py-3">
-        {usersList.map((user) => (
+        {users.map((user) => (
           <button
             key={user._id}
             onClick={() => setSelectedUser(user)}
@@ -56,7 +54,7 @@ export default function Sidebar() {
           </button>
         ))}
 
-        {usersList.length === 0 && (<div className="text-center text-black py-4">No online users</div>)}
+        {users.length === 0 && (<div className="text-center text-black py-4">No online users</div>)}
       </div>
     </aside>
   );
