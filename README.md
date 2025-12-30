@@ -109,7 +109,7 @@ routing components imported from the `react-router-dom` package.
         2. automatique JSON parsing
 
 #### `zustand`
-    -> Zustand library allows us to create our custum global state variables (state + update logic) that are shared across multiple components without prop drilling.
+    -> Zustand state management library allows us to create our custum global state variables (state + update logic) that are shared across multiple components without prop drilling.
     -> So state lives outside the component tree, Components access it directly.
 > Pass state variables to components bla ktrt lhadra
 
