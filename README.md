@@ -118,10 +118,11 @@ routing components imported from the `react-router-dom` package.
     -> Tailwind CSS plugin that adds pre-built UI components and themes.
 > A plugin is a piece of code that depends on another library or tool + it cannot work alone; it depends on a library or framework + Adds extra features to an existing system.
 
+### JavaScript objects are always allocated on the heap.
 
-
-
-
+    - in JavaScript, memory management is automatic, leaks are already handled.
+    - JS uses Garbage collection -> we need heap allocation.
+    - leaks can still exist tho.
 
 ### Error i encountered: (Coss-origin)
 

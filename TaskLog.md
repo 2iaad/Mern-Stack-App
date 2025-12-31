@@ -90,3 +90,14 @@
     - React re-renders Sidebar: Sidebar re-renders, now receiving the updated users array.
 
 9. ### Build the home page (ChatContainer section)
+
+    - **Messages input section:**
+        Made a form the has 2 input fields:
+            - Message input:            
+                This is a controlled text field, means we integrate the a state variable (text) to store the input in it.
+            - File input:
+                call handleImageChange to read the file.
+                set the state variable `imagePreview` with the selected image from the user.
+            - Send button {type:submit}:
+                its disabled if there is no `text || imagePreview`.
+                calls the handleSendMessage() -> that sends the message to the backend controller + save message in the dataBase + Update message state (messages list)

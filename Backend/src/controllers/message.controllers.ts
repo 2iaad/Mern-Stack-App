@@ -49,8 +49,8 @@ export const sendMessage: RequestHandler = async (req, res) => {
 
     try {
 
-        const { id: recieverId } = req.params;
-        const senderId = (req as any).user._id;
+        const { id: recieverId } = req.params; // id from the url
+        const senderId = (req as any).user._id; // comes from protectRoute middleware that ran before this controller.
         const { text, image } = req.body;
 
         let imageUrl;

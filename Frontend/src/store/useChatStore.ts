@@ -3,8 +3,19 @@ import toast from "react-hot-toast";
 import { axiosInstance } from "../lib/axios";
 
 export type User = { _id: string; fullName: string; profilePicture?: string };
-type Message = { _id: string; senderId: string; receiverId: string; text: string; image: string; createdAt: string };
+type Message = {    _id: string;
+                    senderId: string;
+                    receiverId: string;
+                    text: string;
+                    image: string | null;
+                    createdAt: string
+                };
 
+type MessageData = {
+    text?: string;
+    image?: string | null;
+}
+                
 interface ChatStore {
     users: User[],
     messages: Message[],
@@ -14,10 +25,11 @@ interface ChatStore {
 
     getUsers: () => Promise<void>;
     getMessages: (otherUserId: string) => Promise<void>;
+    sendMessage: (message: MessageData) => Promise<void>;
     setSelectedUser: (selectedUser: User | null) => void;
 }
 
-export const useChatStore = create<ChatStore>((set) => ({
+export const useChatStore = create<ChatStore>((set, get) => ({
     
     users: [],
     messages: [],
@@ -50,6 +62,17 @@ export const useChatStore = create<ChatStore>((set) => ({
             set({isMessagesLoading: false})
         }
     },
+
+    sendMessage: async (message : MessageData) => {
+        const { selectedUser, messages } = get();
+        try {
+            const res = await axiosInstance.post(`/messages/send/${selectedUser?._id}`, message);
+            set({ messages: [...messages, res.data] });
+        } catch (error) {
+            toast.error("Error: in sendMessage(): couldn't send message!");
+        }
+    },
+    
     
     setSelectedUser: (selectedUser: User | null) => set({selectedUser})
 }))
