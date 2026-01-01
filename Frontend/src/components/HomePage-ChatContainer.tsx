@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { type ChatStoreStateType, useChatStore } from "@/store/useChatStore";
+import { useChatStore } from "@/store/useChatStore";
 import ChatHeader from "./HomePage-ChatContainer/ChatHeader";
 import MessageInput from "./HomePage-ChatContainer/MessageInput";
 import Messages from "./HomePage-ChatContainer/Messages";
