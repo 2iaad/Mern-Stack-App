@@ -1,4 +1,4 @@
-import { create, type ExtractState } from "zustand";
+import { create } from "zustand";
 import toast from "react-hot-toast";
 import { axiosInstance } from "../lib/axios";
 
@@ -60,7 +60,7 @@ export const useChatStore = create<ChatStoreStates & ChatStoreActions>((set, get
             const res = await axiosInstance.get<Message[]>(`/messages/${otherUserId}`)
             set({messages: res.data})
         } catch (error) {
-            toast.error("Error: in useChatStore(): Could't load users!")
+            toast.error("Error: in useChatStore(): Could't load messages!")
         } finally {
             set({isMessagesLoading: false})
         }
@@ -76,5 +76,3 @@ export const useChatStore = create<ChatStoreStates & ChatStoreActions>((set, get
         }
     }
 }))
-
-export type ChatStoreStateType = ExtractState<typeof useChatStore>
