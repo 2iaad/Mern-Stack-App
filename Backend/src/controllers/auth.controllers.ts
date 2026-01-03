@@ -95,6 +95,7 @@ export const logout = (req: Request, res: Response) => {
 // whats the difference between api key and api secret ?
 export const editProfile: RequestHandler = async (req, res) => {
     try {
+
         const userId: ObjectId = (req as any).user._id;
         const { profilePicture } = req.body;
         if (!profilePicture)

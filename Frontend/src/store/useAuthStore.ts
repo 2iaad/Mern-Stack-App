@@ -87,7 +87,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
             set({ isLoggingIn: false })
         }
     },
-    
+
     logout: async (data) => {
 
         try {
@@ -100,11 +100,11 @@ export const useAuthStore = create<AuthStore>((set) => ({
         } 
     },
 
-    updateProfile: async (data) => {
+    updateProfile: async ( profilePicture ) => {
 
         set({ isUpdatingProfile: true });
         try {
-            const res = await axiosInstance.put("/auth/edit-profile", data);
+            const res = await axiosInstance.put("/auth/edit-profile", { profilePicture }); // the {} to send an {object: string} not string
             set({authUserObj: res.data})
             toast.success("Profile photo updated!")
 
